@@ -4,6 +4,7 @@ import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 import com.travix.medusa.busyflights.service.BusyFlightsService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class BusyFlightsController {
     @RequestMapping(value = "/searchFlights", method = RequestMethod.POST, produces = {"application/json"})
     public
     @ResponseBody
-    List<BusyFlightsResponse> searchAirFare(@RequestBody BusyFlightsRequest request) {
+    List<BusyFlightsResponse> searchAirFare(@Valid @RequestBody BusyFlightsRequest request) {
         return busyFlightsService.searchFlights(request);
     }
 }
