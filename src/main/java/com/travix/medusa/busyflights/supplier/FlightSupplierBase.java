@@ -2,7 +2,9 @@ package com.travix.medusa.busyflights.supplier;
 
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class has common strategy for all flight suppliers
@@ -16,7 +18,18 @@ public interface FlightSupplierBase<I,O> extends FlightSupplier{
     default  List<BusyFlightsResponse> searchFlights(BusyFlightsRequest busyFlightsRequest){
         final I request = getFlightSupplierAdapter().convertRequest(busyFlightsRequest);
         final List<O> response = getFlightSupplierClient().searchFlights(request);
-        return getFlightSupplierAdapter().convertResponse(response);
+        return getFlightSupplierAdapter().convertResponse(response)
+                                         .stream()
+                                         .map(FlightSupplierBase::roundFare)
+                                         .collect(Collectors.toList());
     }
 
+    /**
+     * Rounds fare to 2 decimal places
+     * @param response
+     * @return
+     */
+    static BusyFlightsResponse roundFare ( BusyFlightsResponse response) {
+        return response.builder().fare(Math.round(response.getFare()*100.0)/100.0).build();
+    }
 }
