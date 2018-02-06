@@ -2,7 +2,6 @@ package com.travix.medusa.busyflights.supplier;
 
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
  * @param <I> Request type of flight supplier
  * @param <O> Response type of flight supplier
  */
-public interface FlightSupplierBase<I,O> extends FlightSupplier{
+public interface FlightSupplierStrategy<I,O> extends FlightSupplier{
     FlightSupplierAdapter<I,O> getFlightSupplierAdapter();
     FlightSupplierClient<I,O> getFlightSupplierClient();
 
@@ -20,7 +19,7 @@ public interface FlightSupplierBase<I,O> extends FlightSupplier{
         final List<O> response = getFlightSupplierClient().searchFlights(request);
         return getFlightSupplierAdapter().convertResponse(response)
                                          .stream()
-                                         .map(FlightSupplierBase::roundFare)
+                                         .map(FlightSupplierStrategy::roundFare)
                                          .collect(Collectors.toList());
     }
 
