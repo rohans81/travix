@@ -3,8 +3,9 @@ package com.travix.medusa.busyflights.domain.crazyair;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class CrazyAirRequest {
     private String origin;

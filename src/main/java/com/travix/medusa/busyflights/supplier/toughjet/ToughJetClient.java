@@ -1,5 +1,6 @@
 package com.travix.medusa.busyflights.supplier.toughjet;
 
+import com.codahale.metrics.annotation.Timed;
 import com.travix.medusa.busyflights.domain.toughjet.ToughJetRequest;
 import com.travix.medusa.busyflights.domain.toughjet.ToughJetResponse;
 import com.travix.medusa.busyflights.supplier.FlightSupplierClient;

@@ -5,9 +5,10 @@ import com.travix.medusa.busyflights.validation.DateTimeFormat;
 import javax.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
 import org.hibernate.validator.constraints.Range;
 
-@Data
+@Value
 @Builder
 public class BusyFlightsRequest {
 

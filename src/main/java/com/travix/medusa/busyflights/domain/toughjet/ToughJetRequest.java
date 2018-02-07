@@ -3,8 +3,9 @@ package com.travix.medusa.busyflights.domain.toughjet;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class ToughJetRequest {
     private String from;
